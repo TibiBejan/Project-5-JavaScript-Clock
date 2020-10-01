@@ -1,0 +1,373 @@
+:root {
+	--transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	--dark-color: #292c35;
+	--light-color: #fafafa;
+	--rotation: 0;
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(208, 210, 229);
+	color: #111;
+	transition: var(--transition);
+}
+
+.dark {
+	background-color: var(--dark-color);
+	color: var(--light-color);
+}
+
+#clock {
+	width: 500px;
+	height: 500px;
+	margin-bottom: 2rem;
+	background-color: var(--light-color);
+	border-radius: 50%;
+	border: 1rem solid var(--light-color);
+	box-shadow: inset 0 0.5rem 1rem #cfcfcf, inset 0 -0.5rem 1rem #bdbdbd, 0 -0.5rem 1rem rgba(0, 0, 0, 0.3),
+		0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+	position: relative;
+	transition: var(--transition);
+}
+
+#clock.dark-mode {
+	background-color: var(--dark-color);
+	border: 1rem solid var(--dark-color);
+	box-shadow: inset 0 0.5rem 1rem rgba(0, 0, 0, 0.5), inset 0 -0.5rem 1rem rgba(0, 0, 0, 0.5),
+		0 -0.5rem 1rem rgba(0, 0, 0, 0.3), 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+}
+
+#clock::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 1.5rem;
+	height: 1.5rem;
+	background-color: #f39c12;
+	border-radius: 50%;
+	z-index: 100;
+}
+
+#digital-time {
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform: translate(-50%, -35%);
+	width: 9rem;
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	text-align: center;
+}
+
+.span {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	font-size: 1.6rem;
+	color: var(--dark-color);
+	box-shadow: inset 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.3);
+	transition: var(--transition);
+}
+
+#clock.dark-mode .span {
+	color: var(--light-color);
+}
+
+#current-date {
+	position: absolute;
+	top: 50%;
+	right: 15%;
+	transform: translate(-15%, -50%);
+	width: 5.5rem;
+	height: 2.5rem;
+	display: flex;
+}
+
+#day-name,
+#date-number {
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 2.5rem;
+	color: var(--dark-color);
+	box-shadow: inset 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.3);
+	transition: var(--transition);
+}
+
+#clock.dark-mode #day-name,
+#clock.dark-mode #date-number {
+	color: var(--light-color);
+}
+
+#day-name {
+	flex: 2;
+}
+
+#date-number {
+	flex: 1;
+}
+
+#inner-text {
+	position: absolute;
+	bottom: 25%;
+	left: 50%;
+	transform: translate(-50%, -25%);
+}
+
+.brand {
+	font-size: 1.1rem;
+	font-weight: 600;
+	letter-spacing: 0.1rem;
+	text-transform: uppercase;
+	text-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.3);
+	transition: var(--transition);
+}
+
+.hand {
+	position: absolute;
+	bottom: 50%;
+	left: 50%;
+	transform-origin: bottom;
+	transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+	width: 0.5rem;
+	height: 35%;
+	background-color: #000;
+	border-top-left-radius: 1rem 10%;
+	border-top-right-radius: 1rem 10%;
+	border-bottom-left-radius: 1rem 20%;
+	border-bottom-right-radius: 1rem 20%;
+	box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.3);
+	z-index: 50;
+}
+
+.hours-hand {
+	width: 0.7rem;
+	height: 25%;
+}
+
+.seconds-hand {
+	width: 0.2rem;
+	height: 45%;
+	background-color: #f39c12;
+	z-index: 100;
+}
+
+#clock-hours {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	list-style: none;
+}
+
+.number {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transform: rotate(calc(var(--rotation) * 1deg));
+	padding-top: 1rem;
+}
+
+.number-small {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	transform: rotate(calc(var(--rotation) * 1deg));
+	padding-top: 1rem;
+}
+
+.line {
+	display: inline-block;
+	height: 2rem;
+	width: 0.4rem;
+	border-radius: 1rem;
+	background-color: var(--dark-color);
+	box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.3);
+	transition: var(--transition);
+}
+
+#clock.dark-mode .line,
+#clock.dark-mode .small-line {
+	background-color: var(--light-color);
+}
+
+.small-line {
+	display: inline-block;
+	height: 1rem;
+	width: 0.15rem;
+	border-radius: 1rem;
+	background-color: var(--dark-color);
+	box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.3);
+	transition: var(--transition);
+}
+
+input[type="checkbox"] {
+	display: none;
+}
+
+.label {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 90px;
+	height: 50px;
+	padding: 0.5rem 1rem;
+	border-radius: 2rem;
+	background-color: #000;
+	cursor: pointer;
+}
+
+.fa-moon,
+.fa-sun {
+	font-size: 1.5rem;
+}
+
+.fa-moon {
+	color: #f1c40f;
+}
+
+.fa-sun {
+	color: #f39c12;
+}
+
+.ball {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #fff;
+	box-shadow: inset 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.3), inset -0.2rem -0.2rem 0.5rem rgba(0, 0, 0, 0.5);
+	transition: var(--transition);
+}
+
+input[type="checkbox"]:checked + .label .ball {
+	transform: translateX(40px);
+}
+
+@media screen and (max-width: 650px) {
+	#clock {
+		width: 350px;
+		height: 350px;
+	}
+
+	.hand {
+		width: 0.4rem;
+	}
+
+	.hours-hand {
+		width: 0.5rem;
+	}
+
+	.line {
+		height: 1.6rem;
+		width: 0.35rem;
+	}
+
+	.small-line {
+		height: 0.8rem;
+	}
+
+	.seconds-hand {
+		width: 0.2rem;
+	}
+
+	#digital-time {
+		width: 6rem;
+		height: 1.5rem;
+	}
+
+	.span {
+		padding: 0.4rem 0.5rem;
+		font-size: 1.1rem;
+	}
+
+	#current-date {
+		width: 4rem;
+		height: 1.5rem;
+	}
+
+	#day-name,
+	#date-number {
+		font-size: 0.9rem;
+		line-height: 1.5rem;
+	}
+
+	.brand {
+		font-size: 0.8rem;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	#clock {
+		width: 275px;
+		height: 275px;
+	}
+
+	#clock::before {
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.hand {
+		width: 0.3rem;
+	}
+
+	.hours-hand {
+		width: 0.4rem;
+	}
+
+	.number {
+		padding-top: 0.8rem;
+	}
+
+	.number-small {
+		padding-top: 0.5rem;
+	}
+
+	.line {
+		height: 1.3rem;
+		width: 0.3rem;
+	}
+
+	.small-line {
+		height: 0.5rem;
+	}
+
+	#digital-time {
+		top: 30%;
+		transform: translate(-50%, -30%);
+		width: 5rem;
+	}
+
+	.span {
+		padding: 0.4rem 0.4rem;
+		font-size: 1rem;
+	}
+
+	.brand {
+		font-size: 0.55rem;
+	}
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Javascript Clock</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <section id="clock">
+        <div class="hand hours-hand"></div>
+        <div class="hand minutes-hand"></div>
+        <div class="hand seconds-hand"></div>
+        <ul id="clock-hours"></ul>
+        <div id="digital-time">
+            <span id="digital-hours" class="span"></span>
+            <span id="digital-minutes" class="span"></span>
+            <span id="digital-seconds" class="span"></span>
+        </div>
+        <div id="current-date">
+            <span id="day-name"></span>
+            <span id="date-number"></span>
+        </div>
+        <div id="inner-text">
+            <span class="brand">Clock Project JS</span>
+        </div>
+    </section>
+    <section id="dark-mode">
+        <input type="checkbox" id="darkMode">
+        <label for="darkMode" class="label">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <div class="ball"></div>
+        </label>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
